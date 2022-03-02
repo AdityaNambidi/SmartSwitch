@@ -19,13 +19,16 @@ body {
 }
 
 .App {
-    margin-top: 50%;
-    transform: translateY(-50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
     color: var(--red);
 }
 
 h1 {
+    position: absolutes;
     font-size: 55px;
 	animation: text 3s 1;
 }
