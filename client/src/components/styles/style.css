@@ -5,87 +5,20 @@
     margin: 0;
     font-family: 'Poppins', sans-serif;
     transition: all .5s;
+    scroll-behavior: smooth;
 }
 
 :root {
-    --light: #F9F6EE;
-    --red: #b41932;
-    --dark: #1f2833;
+    --light: #cccccc;
+    --mid: #00c17c;
+    --dark: #212626;
+    --dark2: #6e6d6e;
+    --dark3: #8d8a94;
 }
 
 body {
     background-color: var(--dark);
-}
-
-.App {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: var(--red);
-}
-
-h1 {
-    font-size: 55px;
-	animation: text 3s 1;
-}
-
-.logo {
-    width: 100px;
-    position: relative;
-    fill: var(--red);
-    stroke: var(--red);
-}
-
-.logo path {
-
-    fill: var(--red);
-}
-
-.logo:hover,
-h1:hover {
-    transform: scale(1.25);
-}
-
-p {
-    color: var(--light);
-    position: relative;
-    margin-bottom: 20px;
-}
-
-.prototype-btn {
-    padding: 15px;
-    background-color: var(--red);
-    border-radius: 15px;
-    width: 120px;
-    margin-left: auto;
-    margin-right: auto;
-    height: 35px;
-    
-}
-.prototype-btn a {
-    color: var(--light);
-    text-decoration: none;
-    font-weight: 700;
-    position: absolute;
-    margin-top: 6px;
-    margin-left: -60px;
-}
-
-.prototype-btn .hyperlink-icon {
-    height: 20px;
-    margin-top: 10px;
-    position: absolute;
-    margin-left: 40px;
-    margin-top: 8.5px;
-    fill: var(--light);
-}
-
-@keyframes text {
-    0%{
-        color: var(--dark);
-        margin-bottom: -40px; 
-        letter-spacing: 20px; 
-    }
+    transition: none;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }

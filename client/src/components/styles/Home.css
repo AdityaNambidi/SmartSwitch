@@ -1,0 +1,85 @@
+
+.home h1{
+    color: var(--mid);
+    font-size: 62px;
+    margin-top: 50vh;
+    transform: translateY(-50%); 
+    text-align: center;
+}
+
+.home h1:hover {
+    transform: translateY(-50%) scale(1.2);
+}
+
+.home p {
+    text-align: center;
+    color: var(--light);
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -30px;
+    /* position: relative */
+}
+
+.about h1 {
+    color: var(--mid);
+    text-align: center;
+    margin-top: 150px;
+    font-size: 42px;
+}
+
+.about p {
+    width: 600px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    color: var(--light);
+}
+
+.about h2 {
+    color: var(--mid);
+    text-align: center;
+    font-size: 28px;
+    margin-top: 90px;
+}
+
+.socials {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.socials .social {
+    width: 80px;
+    height: 80px;
+    background-color: var(--light);
+    /* text-align: center; */
+    border-radius: 40px;
+    overflow: hidden;
+}
+
+.socials .social i {
+    font-size: 45px;
+    color: var(--dark); 
+    line-height: 80px;
+    margin-left: 19px;
+}
+
+.socials .social:hover {
+    width: 250px;
+}
+
+.socials .social p {
+    text-align: center;
+    display: inline;
+    line-height: 80px;
+    color: var(--dark);
+    position: relative;
+    top: -10px;
+    left: 40px;
+}

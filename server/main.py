@@ -189,7 +189,11 @@ def switch(id, task, e):
         return "ok"
 
     return "This page is not for you."
-    
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template('index.html')
+
 def run():
     app.run(host='0.0.0.0')
 
