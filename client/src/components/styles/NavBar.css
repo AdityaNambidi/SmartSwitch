@@ -38,23 +38,10 @@
     margin-right: 50px;
     line-height: 85px;
     text-align: center;
-    color: black;
 }
 
 .navbar ul li:hover {
     transform: scale(1.2);
-}
-
-.current-page {
-    /* background-color: var(--dark);
-    width: 100px;
-    height: 85px;
-    position: absolute;
-    z-index: -500;
-    transform: translate(-25%, -70px);
-    top: 85px;
-    border-radius: 15px; */
-    color: black;
 }
 
 .current-page * {

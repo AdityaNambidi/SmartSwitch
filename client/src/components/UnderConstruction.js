@@ -1,5 +1,5 @@
 import React from 'react'
-import './styles/construction.css'
+import './styles/Construction.css'
 
 export default function UnderConstruction() {
     return (

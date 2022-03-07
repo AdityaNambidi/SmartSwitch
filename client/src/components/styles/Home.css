@@ -55,19 +55,21 @@
 }
 
 .socials .social {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     background-color: var(--light);
     /* text-align: center; */
     border-radius: 40px;
     overflow: hidden;
+    box-shadow: 8px 8px 10px black;
+    transition: all 0.8s;
 }
 
 .socials .social i {
-    font-size: 45px;
+    font-size: 35px;
     color: var(--dark); 
-    line-height: 80px;
-    margin-left: 19px;
+    line-height: 60px;
+    margin-left: 14px;
 }
 
 .socials .social:hover {
@@ -77,7 +79,7 @@
 .socials .social p {
     text-align: center;
     display: inline;
-    line-height: 80px;
+    line-height: 60px;
     color: var(--dark);
     position: relative;
     top: -10px;

@@ -1,0 +1,61 @@
+
+.login h1 {
+    text-align: center;
+    color: var(--mid);
+    margin-top: 150px;
+    font-size: 42px;
+}
+
+.login .input-field {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    max-width: 700px;
+    border-bottom: 2px var(--dark2) dashed;
+    padding: 6px;
+}
+
+.login .input-field input {
+    margin-top: 30px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--light);
+    width: 100%;
+}
+
+.login .input-field::after {
+    background-color: var(--mid);
+    width: 100%;
+    height: 2px;
+    display: block;
+    transform: scaleX(0);
+    content: "";
+    position: absolute;
+    transition: all 0.5s;
+    transform-origin: 0%;
+    margin-top: 6px;
+    margin-left: -6px;
+}
+
+.login .input-field:focus-within::after {
+    transform: scaleX(1);
+}
+
+.login .input-field label {
+    color: var(--dark2);
+    position: absolute;
+    margin-top: 27px;
+    margin-left: calc(-100% + 10px);
+    pointer-events: none;
+    font-weight: 200;
+}
+
+.login .input-field:focus-within label,
+.login .input-field input:not(:placeholder-shown) + label {
+    transform: translate(-5px, -25px) scale(0.8);
+}
+
+.login .input-field .text-entered {
+
+}

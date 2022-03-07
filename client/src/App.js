@@ -4,6 +4,7 @@ import './components/styles/style.css'
 import UnderConstruction from "./components/UnderConstruction";
 import { Home, About } from "./components/Home";
 import NavBar from "./components/NavBar";
+import Login from "./components/Login";
 
 function App() {
 
@@ -22,6 +23,8 @@ function App() {
                 <Route path="/home" element= { <Home /> } />
 
                 <Route path="/about" element= { <About /> } />
+
+                <Route path="/login" element= { <Login /> } />
 
             </Routes>
 

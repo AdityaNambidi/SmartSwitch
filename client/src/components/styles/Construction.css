@@ -45,14 +45,19 @@
     margin-right: auto;
     height: 35px;
     margin-top: 13px;
+    box-shadow: 8px 8px 10px black;
 }
 
 .construction .prototype-btn:hover {
     opacity: 0.7;
 }
 
+.construction .prototype-btn:active {
+    opacity: 0.4;
+}
+
 .construction .prototype-btn p {
-    color: var(--light);
+    color: var(--dark);
     text-decoration: none;
     font-weight: 700;
     position: absolute;
@@ -66,7 +71,7 @@
     position: absolute;
     margin-left: 40px;
     margin-top: 8.5px;
-    fill: var(--light);
+    fill: var(--dark);
 }
 
 @keyframes text {
