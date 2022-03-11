@@ -4,7 +4,7 @@ import './components/styles/style.css'
 import UnderConstruction from "./components/UnderConstruction";
 import { Home, About } from "./components/Home";
 import NavBar from "./components/NavBar";
-import Login from "./components/Login";
+import { Login, CreateAccount } from "./components/Login";
 
 function App() {
 
@@ -25,6 +25,9 @@ function App() {
                 <Route path="/about" element= { <About /> } />
 
                 <Route path="/login" element= { <Login /> } />
+
+                <Route path="/create-account" element= { <CreateAccount /> } />
+
 
             </Routes>
 

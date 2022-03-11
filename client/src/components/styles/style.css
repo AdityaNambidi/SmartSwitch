@@ -22,3 +22,22 @@ body {
     scroll-behavior: smooth;
     overflow-x: hidden;
 }
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgb(150,150,150);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--dark2);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

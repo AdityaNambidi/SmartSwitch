@@ -8,6 +8,35 @@ from email.mime.text import MIMEText
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
+
+
+
+
+
+
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+############### OLD
+
 def sendEmail(to):
 
     Email = "no.reply.smart.switch@gmail.com"    
@@ -39,11 +68,6 @@ def sendEmail(to):
 
         print ("Something went wrong….",ex)
         return False
-
-
-@app.route("/")
-def home():
-    return render_template("index.html")
 
 @app.route("/prototype1/")
 def PrototypeHome():

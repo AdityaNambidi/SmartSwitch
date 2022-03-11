@@ -6,56 +6,81 @@
     font-size: 42px;
 }
 
-.login .input-field {
+.login-btn {
+    margin-top: 80px;
     margin-left: 50%;
     transform: translateX(-50%);
-    width: 70%;
-    max-width: 700px;
-    border-bottom: 2px var(--dark2) dashed;
-    padding: 6px;
 }
 
-.login .input-field input {
-    margin-top: 30px;
-    background-color: transparent;
-    border: none;
-    outline: none;
+.create-acc-btn {
+    text-align: center;
+    width: 250px;
+    margin-top: 60px;
+    margin-bottom: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 25px;
     color: var(--light);
-    width: 100%;
+    text-decoration: underline;
 }
 
-.login .input-field::after {
-    background-color: var(--mid);
-    width: 100%;
-    height: 2px;
-    display: block;
-    transform: scaleX(0);
-    content: "";
+.create-acc-btn:hover {
+    opacity: 0.5;
+}
+
+.login .or {
+    background-color: var(--dark2);
+    margin-top: 50px;
+    font-size: 18px;
+    width: 80%;
+    max-width: 500px;
+    height: 1px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login p {
+    text-align: center;
+    color: var(--light);
+}
+
+.login .google-login {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: var(--dark3);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.login .google-login i {
+    line-height: 60px;
+    font-size: 35px;
+    color: var(--dark);
+}
+
+.login .google-login:hover { 
+    opacity: 0.55;
+}
+
+.login .back {
+    margin-top: -30px;
+    margin-left: 50px;
     position: absolute;
-    transition: all 0.5s;
-    transform-origin: 0%;
-    margin-top: 6px;
-    margin-left: -6px;
+    color: var(--light);
+    font-size: 25px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
-.login .input-field:focus-within::after {
-    transform: scaleX(1);
+.login .back span {
+    font-size: 20px;
+    line-height: 25px;
+    transform: translateY(1.25px);
 }
 
-.login .input-field label {
-    color: var(--dark2);
-    position: absolute;
-    margin-top: 27px;
-    margin-left: calc(-100% + 10px);
-    pointer-events: none;
-    font-weight: 200;
-}
-
-.login .input-field:focus-within label,
-.login .input-field input:not(:placeholder-shown) + label {
-    transform: translate(-5px, -25px) scale(0.8);
-}
-
-.login .input-field .text-entered {
-
+.login .back:hover {
+    opacity: 0.7;
 }

@@ -29,7 +29,7 @@
 }
 
 .about p {
-    width: 600px;
+    width: 80%;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -45,7 +45,7 @@
 }
 
 .socials {
-    width: 500px;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -73,15 +73,15 @@
 }
 
 .socials .social:hover {
-    width: 250px;
+    width: 200px;
 }
 
 .socials .social p {
-    text-align: center;
+    text-align: left;
     display: inline;
     line-height: 60px;
     color: var(--dark);
     position: relative;
-    top: -10px;
-    left: 40px;
+    top: -7px;
+    left: 30px;
 }

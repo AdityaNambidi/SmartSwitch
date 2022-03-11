@@ -1,0 +1,100 @@
+
+
+.input-field {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    max-width: 700px;
+    border-bottom: 2px var(--dark2) dashed;
+    padding: 6px;
+    margin-top: 20px;
+}
+
+.input-field input {
+    margin-top: 30px;
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+    color: var(--light) !important;
+    width: 100%;
+    transition-delay: 500000s;
+    -webkit-text-fill-color: var(--light) !important;
+}
+
+.input-field::after {
+    background-color: var(--mid);
+    width: 100%;
+    height: 2px;
+    display: block;
+    transform: scaleX(0);
+    position: absolute;
+    transition: all 0.5s;
+    transform-origin: 0%;
+    margin-top: 6px;
+    margin-left: -6px;
+}
+
+.input-field:focus-within::after {
+    transform: scaleX(1);
+}
+
+.input-field label {
+    color: var(--light);
+    position: absolute;
+    margin-top: 27px;
+    margin-left: calc(-100% + 10px);
+    pointer-events: none;
+    font-weight: 200;
+}
+
+.input-field:focus-within label,
+.input-field input:not(:placeholder-shown) + label {
+    transform: translate(-7%, -25px) scale(0.85);
+}
+
+.btn {
+    padding: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    background-color: var(--mid);
+    color: var(--dark);
+    font-weight: 700;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    opacity: 0.7;
+}
+
+.btn:active {
+    opacity: 0.5;
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+  }
