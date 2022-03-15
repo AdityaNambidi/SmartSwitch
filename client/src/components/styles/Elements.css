@@ -1,5 +1,4 @@
 
-
 .input-field {
     margin-left: 50%;
     transform: translateX(-50%);
@@ -26,6 +25,7 @@
     width: 100%;
     height: 2px;
     display: block;
+    content: "";
     transform: scaleX(0);
     position: absolute;
     transition: all 0.5s;
@@ -34,8 +34,8 @@
     margin-left: -6px;
 }
 
-.input-field:focus-within::after {
-    transform: scaleX(1);
+.input-field:focus-within::after{
+    transform: scaleX(1)
 }
 
 .input-field label {
@@ -98,3 +98,14 @@
     /* Support for IE. */
     font-feature-settings: 'liga';
   }
+
+
+
+
+  .input-field .warning {
+    position: absolute;
+    right: 0;
+    top: 34px;
+    color: orangered;
+    pointer-events: none;
+}

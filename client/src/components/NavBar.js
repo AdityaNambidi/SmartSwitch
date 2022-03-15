@@ -6,8 +6,6 @@ export default function NavBar( ) {
 
     const location = useLocation().pathname;
 
-    console.log(location)
-
     if (location === "/") {
         return null
     }
