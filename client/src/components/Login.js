@@ -212,7 +212,95 @@ function CreateAccount() {
 }
 
 
+
+function Otp() {
+
+    const otpInps = [useRef(), useRef(), useRef(), useRef(), useRef(), useRef()]
+    const inpRef = useRef()
+    let prevInp = ""
+    const cursor = useRef()
+    let cursorPos = -425
+
+    let _i = 0
+
+    function keyPressed() {
+
+        const str = inpRef.current.value;
+
+
+        if (str.length > prevInp.length) {
+            otpInps[_i].current.innerHTML = str[str.length-1]
+            cursorPos += 170
+            _i++
+        } else {
+            otpInps[_i-1].current.innerHTML = ""
+            cursorPos -= 170
+
+            _i--
+        }
+
+        prevInp = str    
+
+        if (_i < 5){
+            cursor.current.style.marginLeft = cursorPos + "px"
+        }
+        else {
+            cursor.current.style.marginLeft = 425 + "px"
+            if (str.length === 6) 
+                cursor.current.style.marginLeft = 10000 + "px"
+            
+        }            
+
+    }
+
+    return (
+
+        <div className='login' >
+
+            <h1>Enter OTP</h1>
+
+            <p
+                style={{
+
+                    marginTop: '30px',
+                    maxWidth: "550px",
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+
+                }}
+            >To confirm your identity, an OTP was sent to your email. Enter the OTP here within like 1 minute or smtin</p>
+
+            <div className="otp-inp">
+
+                <input type="digit" maxLength={6} ref= {inpRef} onChange= {keyPressed} />
+                
+                <h1 className='cursor'
+                    style={{
+                        position: 'absolute',
+                        marginLeft: "-425px"
+                    }}
+                    ref= {cursor}
+                >|</h1>
+
+                <p ref={ otpInps[0] } ></p>
+                <p ref={ otpInps[1] } ></p>
+                <p ref={ otpInps[2] } ></p>
+                <p ref={ otpInps[3] } ></p>
+                <p ref={ otpInps[4] } ></p>
+                <p ref={ otpInps[5] } ></p>
+
+            </div>
+
+            <button className="btn submit-otp">Submit</button>
+
+        </div>
+
+    )
+
+}
+
 export {
     Login,
-    CreateAccount
+    CreateAccount,
+    Otp
 }

@@ -4,7 +4,7 @@ import './components/styles/style.css'
 import UnderConstruction from "./components/UnderConstruction";
 import { Home, About } from "./components/Home";
 import NavBar from "./components/NavBar";
-import { Login, CreateAccount } from "./components/Login";
+import { Login, CreateAccount, Otp } from "./components/Login";
 
 function App() {
 
@@ -28,6 +28,7 @@ function App() {
 
                 <Route path="/create-account" element= { <CreateAccount /> } />
 
+                <Route path="/otp" element= { <Otp /> } />
 
             </Routes>
 

@@ -8,4 +8,6 @@ class User(db.Model):
     email = db.Column(db.String(321), primary_key= True, unique=True)
     password = db.Column(db.String(100), nullable= False)
     date_added = db.Column(db.DateTime, default= datetime.now)
+    otp = db.Column( db.Integer, nullable = False )
+    emailConfirmed = db.Column( db.Integer, default= 0 )
 

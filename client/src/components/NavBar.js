@@ -73,9 +73,9 @@ export default function NavBar( ) {
 
                 </li>
 
-                <li  className={ ( location === "/login" ? "current-page" : "nav-item" ) } >
+                <li  className={ ( location === "/login" || location === "/create-account" || location === "/otp" ? "current-page" : "nav-item" ) } >
 
-                    <Link style={ ( location === "/login" ? {color: "var(--mid)"} : {color: "var(--dark3)"} ) } to="/login"> Login </Link>
+                    <Link style={ ( location === "/login" || location === "/create-account" || location === "/otp"  ? {color: "var(--mid)"} : {color: "var(--dark3)"} ) } to="/login"> Login </Link>
                 </li>
 
             </ul>
