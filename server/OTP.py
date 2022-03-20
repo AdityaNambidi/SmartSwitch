@@ -34,10 +34,12 @@ def sendEmail(email, otp):
         smtp_server.close()
         print ("Email sent successfully!")
 
+        return "ok"
+
     except Exception as ex:
         print ("Something went wrong….",ex)
-
-
+        return "Something went wrong" 
+        
 def generateOTP():
     otp = random.randint(100000, 999999)
     return otp
@@ -48,7 +50,7 @@ def otpLoop(db, User, email, app):
 
     while True:
         
-        if time.time() - start >= 10:
+        if time.time() - start >= 60:
             print("time up")
 
             with app.app_context():

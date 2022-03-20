@@ -1,21 +1,19 @@
-from flask import Flask, jsonify, render_template, request, session, redirect, url_for, flash
-from models import User, db
-from config import AppConfig
+from flask import Flask, render_template, request
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
+from flask_jwt_extended import create_access_token,get_jwt,get_jwt_identity, unset_jwt_cookies, jwt_required, JWTManager
 from threading import Thread
-import os
-import json
 from OTP import otpLoop, sendEmail, generateOTP
-
+from Tables import User, db
+from Config import AppConfig
 
 app = Flask(__name__)
-
 app.config.from_object(AppConfig)
 
 db.init_app(app)
 CORS(app)
 bcrypt = Bcrypt(app)
+jwt = JWTManager(app)
 
 @app.route("/")
 def home():
@@ -29,16 +27,25 @@ def login():
     user = User.query.filter_by(email= data['email'] ).first()
 
     if user is None:
-        return jsonify({
-            "error": "User does not exist"
-        })
+        return {
+            "type": "error",
+            "res": "Account does not exist"
+        }
 
     if not bcrypt.check_password_hash(user.password, data['password']):
-        return jsonify({
-            "error": "Password incorrect"
-        })
+        return {
+            "type": "error",
+            "res": "Password incorrect"
+        }
 
-    return "balls"
+    access_token = create_access_token( identity= data['email'] )
+
+    return {
+        "type": "res",
+        "res": "Signed in",
+        "token": access_token
+    }
+
 
 @app.route("/createAccount", methods= ["POST"])
 def createAcc(): 
@@ -50,12 +57,13 @@ def createAcc():
 
     # return {1:0}
 
-    user_exists = User.query.filter_by( email= data['email'] ).first()
+    user_exists = User.query.filter_by( email= data["email"]).first()
 
     if user_exists:
-        return jsonify({
-            "error": "User aldredy exists exist"
-        })
+        return {
+           "type": "error",
+            "res": "Account aldredy exists exist"
+        }
 
     hashed_password = bcrypt.generate_password_hash(data['password'])
     otp = generateOTP()
@@ -66,11 +74,21 @@ def createAcc():
     db.session.commit()
     
     otpThread = Thread(target= otpLoop, args= (db, User, data["email"], app, ))
-    sendEmail(data['email'], str(otp))
+
+    emailSent = sendEmail(data['email'], str(otp))
+
+    if emailSent == "Something went wrong":
+        return {
+            "type": "error",
+            "res": "Something went wrong while sending the OTP"
+        }
 
     otpThread.start()
 
-    return {"res": "OTP sent"}
+    return {
+        "type": "res",
+        "res": "OTP sent"
+    }
 
 
 @app.route("/confirm-otp", methods= ["POST"])
@@ -78,12 +96,33 @@ def otp():
 
     data = request.get_json()
 
-    user_exists = User.query.filter_by( email= data['email'] ).first()
+    user = User.query.filter_by( email= data["email"]).first()
 
-    if user_exists:
-        User.query.filter_by( email= data['email']).all()[0].otp
+    if user is None:
+        return { 
+           "type": "error",
+            "res" : "OTP Expired" 
+        }
 
-    return None
+
+    if int(data["otp"]) == user.otp:
+        user.emailConfirmed = 1
+        db.session.commit()
+
+    access_token = create_access_token( identity= data['email'] )
+
+    return { 
+        "type": "res",
+        "res": "Account Created",
+        "token": access_token
+    }
+
+
+@app.route("/get-data", methods= ["POST"])
+@jwt_required()
+def getData():
+    return {"res": "balls"}
+
 
 @app.errorhandler(404)
 def not_found(e):
