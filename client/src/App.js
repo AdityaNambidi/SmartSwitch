@@ -4,7 +4,8 @@ import './components/styles/style.css'
 import UnderConstruction from "./components/UnderConstruction";
 import { Home, About } from "./components/Home";
 import NavBar from "./components/NavBar";
-import { Login, CreateAccount, Otp } from "./components/Login";
+import { Login, CreateAccount, Otp, Logout } from "./components/Login";
+import Dashboard from "./components/Dashboard";
 
 function App() {
 
@@ -13,8 +14,6 @@ function App() {
         <Router>
             
             <NavBar />
-
-            {/* <h1>{loc}</h1> */}
 
             <Routes>
 
@@ -30,6 +29,10 @@ function App() {
 
                 <Route path="/otp" element= { <Otp /> } />
 
+                <Route path= "/dashboard" element= { <Dashboard /> } />
+
+                <Route path= "/logout" element= { <Logout /> } />
+
             </Routes>
 
 
@@ -38,5 +41,6 @@ function App() {
     );
 
 }
+
 
 export default App;

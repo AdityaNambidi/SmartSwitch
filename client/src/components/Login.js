@@ -1,13 +1,27 @@
-import React, {  useRef, useState } from 'react'
+import React, {  useEffect, useRef, useState } from 'react'
 import './styles/Login.css'
 import InputField from './Elements';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 function Login() {
 
     const emailInp = useRef();
     const pwdInp = useRef();
+
+    const token = localStorage.getItem("token")
+    const navigate = useNavigate()
+
+    const [error, showErr] = useState()
+
+    useEffect(() => {
+        checkLoggedIn()
+            .then( res => {
+                if (res) {
+                    navigate("/dashboard")
+                }
+            })
+    })
 
     function submit() {
 
@@ -16,7 +30,38 @@ function Login() {
             password: pwdInp.current.value
         }
 
-        console.log(data)
+        fetch("/Login", {
+                
+            method: "POST",
+            
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type':  'application/json',
+            },
+
+            mode: 'cors',
+            cache: 'default',
+            body: JSON.stringify(data)
+        
+        })
+            .then(res => res.json())                
+            .then( function(res) {
+
+                console.log(res.res)
+
+                if (res.res === "Signed in") {
+                    localStorage.setItem("token", res.token)
+                    localStorage.setItem("email", data.email)
+                    navigate("/dashboard")
+                }
+
+                if (res.type === "error") {
+
+                    showErr(res.res)
+
+                }
+
+            })
 
     }
 
@@ -31,6 +76,7 @@ function Login() {
 
             <InputField label= "Password" name="password" selfRef= {pwdInp} style={ {marginTop: '50px'} } enterPressed= {submit} />
 
+            <p className='error' > {error} </p>
 
             <button className='btn login-btn' onClick={ submit } >Sign in</button>
 
@@ -76,10 +122,28 @@ function CreateAccount() {
     const [pwdWar, setPW] = useState("")
     const [emailWar, setEW] = useState("")
 
+    const [page, setPage] = useState("ca")
+
+    const [error, showErr] = useState("");
+
+    const token = localStorage.getItem("token")
+    const navigate = useNavigate()
+
+
+    useEffect(() => {
+        checkLoggedIn()
+            .then( res => {
+                if (res) {
+                    navigate("/dashboard")
+                }
+            })
+    })
+
+
     function validate() {
 
         let hasSpecialChar = false
-        const speacialChars = "~!@#$%^&*()_+-={}|[]\:;',./<>?"
+        const speacialChars = "~!@#$%^&*()_+-={}|[]:;',./<>?"
         let valid = true
 
         for (let i = 0; i < speacialChars.length; i++) {
@@ -143,7 +207,7 @@ function CreateAccount() {
 
         if (validate()) {
 
-            fetch("http://192.168.0.191:5000/createAccount", {
+            fetch("/createAccount", {
                 
                 method: "POST",
                 
@@ -157,13 +221,29 @@ function CreateAccount() {
                 body: JSON.stringify(data)
             
             })
-                .then(res => res.json())
-                .then( data => console.log(data) )
+                .then(res => res.json())                
+                .then( function(data) {
+
+                    console.log(data.res === "OTP sent")
+
+                    if (data.res === "OTP sent") {
+                        setPage("otp")
+                        
+                    }
+
+                    if (data.type === "error") {
+
+                        showErr(data.res)
+
+                    }
+
+                })
 
         }
 
     }
 
+    if (page === "ca")
     return (
 
         <div className='login'>
@@ -183,6 +263,9 @@ function CreateAccount() {
 
             <InputField onChange= {validate} name="password" label="Confirm Password" selfRef= {confirmPwdInp} warning = { pwdSame } enterPressed= {submit} />
 
+            <p
+                className='error'
+            > { error } </p>
 
             <button className='btn login-btn' onClick={ submit } >Create Account</button>
 
@@ -209,17 +292,34 @@ function CreateAccount() {
 
     )
 
+    else if (page === "otp")
+        return <Otp email= { emailInp.current.value } password= { pwdInp.current.value } />
+
 }
 
 
 
-function Otp() {
+function Otp( props ) {
 
     const otpInps = [useRef(), useRef(), useRef(), useRef(), useRef(), useRef()]
     const inpRef = useRef()
     let prevInp = ""
     const cursor = useRef()
     let cursorPos = -425
+    const token = localStorage.getItem("token")
+
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        checkLoggedIn()
+            .then( res => {
+                if (res) {
+                    navigate("/dashboard")
+                }
+            })
+    })
+
 
     let _i = 0
 
@@ -253,6 +353,50 @@ function Otp() {
 
     }
 
+
+    function submit() {
+
+        const data = {
+            ...props,
+            otp: inpRef.current.value
+        }
+ 
+        fetch("/confirm-otp", {
+                
+                method: "POST",
+                
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type':  'application/json',
+                },
+
+                mode: 'cors',
+                cache: 'default',
+                body: JSON.stringify(data)
+            
+            })
+                .then(res => res.json())                
+                .then( function(data) {
+
+                    console.log(data.res)
+
+                    if (data.res === "Account Created") {
+                        console.log("logged in")
+
+                        const token = data.token
+
+                        localStorage.setItem("token", token)
+                        localStorage.setItem("email", props.email)
+
+                        navigate("/dashboard")
+                    }
+
+                })
+                .catch(err => {
+                    console.error("EROORRR", err)
+                })
+       }
+
     return (
 
         <div className='login' >
@@ -272,7 +416,7 @@ function Otp() {
 
             <div className="otp-inp">
 
-                <input type="digit" maxLength={6} ref= {inpRef} onChange= {keyPressed} />
+                <input autoFocus type="digit" maxLength={6} ref= {inpRef} onChange= {keyPressed} />
                 
                 <h1 className='cursor'
                     style={{
@@ -291,16 +435,90 @@ function Otp() {
 
             </div>
 
-            <button className="btn submit-otp">Submit</button>
+            <button onClick={submit} className="btn submit-otp">Submit</button>
 
         </div>
+    )
+
+}
+
+
+function Logout() {
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+
+        fetch("/logout", {
+                
+            method: "POST",
+            
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type':  'application/json',
+            },
+
+            mode: 'cors',
+            cache: 'default',
+            body: null
+        
+        })
+            .then( res => {
+                localStorage.removeItem("token");
+                localStorage.removeItem("email");
+                navigate("/login")
+            } )
+
+    })
+
+    return (
+
+        null
 
     )
+
+}
+
+
+async function checkLoggedIn() {
+
+    const token = localStorage.getItem("token")
+
+
+    const res = await fetch("/is-logged-in", {
+                
+        method: "POST",
+        
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type':  'application/json',
+            "Authorization": "Bearer " + token
+        },
+
+        mode: 'cors',
+        cache: 'default',
+        body: JSON.stringify({1:2})
+    
+    })
+        .then(res => res.json())
+        .then( function(data) {
+            
+            if (data.msg === "yes") {
+                return true
+            } else {
+                return false
+            }
+
+        } )
+
+    return res
 
 }
 
 export {
     Login,
     CreateAccount,
-    Otp
+    Otp,
+    checkLoggedIn,
+    Logout
 }

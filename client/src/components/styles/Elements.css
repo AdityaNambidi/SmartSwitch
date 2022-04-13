@@ -102,10 +102,30 @@
 
 
 
-  .input-field .warning {
+.input-field .warning {
     position: absolute;
     right: 0;
-    top: 34px;
+    margin-top: 10px;
     color: orangered;
     pointer-events: none;
 }
+
+
+.input-field .eye {
+    position: absolute;
+    top: 33px;
+    right: 20px;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: var(--dark2);
+}
+
+.input-field .hide {
+    display: none;
+}
+
+.btn-anim:hover { opacity: 0.6; }
+.btn-anim:active { opacity: 0.3; }

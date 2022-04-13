@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles/Elements.css'
 
 export default function InputField( props ) {
+
+    const [showTxt, toggleShow] = useState(false)
+    const [type, changeType] = useState(props.name)
 
     function onPressEnter(e) {
         
@@ -23,7 +26,7 @@ export default function InputField( props ) {
         <div className="input-field" style={ props.style }>
 
             <input 
-                type={ props.name } 
+                type={ type } 
                 ref= {props.selfRef} 
                 name= {props.name  } 
                 className= {props.name  }  
@@ -33,6 +36,24 @@ export default function InputField( props ) {
                 onChange= { props.onChange }
             />
             <label htmlFor={props.name  }> {props.label}</label>
+
+            <button className= { (props.name === "password" ? "eye" : "hide") } 
+                onClick= { () => { 
+                    toggleShow( !showTxt ) 
+                    
+                    if (showTxt) 
+                        changeType("password")
+                    else 
+                        changeType("text")
+
+                } }
+            >
+            
+                <span class="material-icons">
+                    { showTxt ? "visibility" : "visibility_off" }
+                </span>
+
+            </button>
 
             <p className='warning' > { (props.warning ? "*" + props.warning : "") } </p>
 

@@ -1,0 +1,151 @@
+
+
+.dashboard .title {
+
+    margin-top: 110px;
+    color: var(--mid);
+    font-size: 35px;
+    text-align: center;
+
+}
+
+.switch-list {
+    padding: 10px;
+    padding-bottom: 50px;
+}
+
+
+/* SWITCH STUFF */
+
+.switch {
+    width: 70%;
+    height: 50px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    border-radius: 15px;
+    background-color: rgba( 100, 100, 100, 0.2 );
+}
+
+.switch h1 {
+    font-size: 20px;
+    color: var(--light)
+}
+
+.switch * {
+    display: inline-block;
+    margin-top: 13px;
+    margin-left: 50px;
+}
+
+.switch button {
+    background-color: var(--mid);
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: 900;
+}
+
+
+
+/* ADD SWITCH STUFF */
+.add-switch {
+    width: 100px;
+    height: auto;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.add-switch button {
+
+    background-color: var(--mid);
+    color: var(--dark);
+    border: none;
+    outline: none;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    padding: 0;
+    border-radius: 12px;
+    font-size: 25px;
+    font-weight: 900;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+}
+
+.add-switch p {
+    color: var(--light);
+    text-align: center;
+}
+
+.add-switch-panel-bg {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    /* backdrop-filter: blur(1.5px); */
+}
+
+
+.add-switch-panel {
+    width: 70%;
+    max-width: 800px;
+    height: 75px;
+    background-color: rgba(0,0,0, 0.25);
+    backdrop-filter: blur(6px);
+    margin-left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.add-switch-panel input {
+    position: relative;
+    top: 50%;
+    transform: translateY(-40%);
+    width: 60%;
+    height: 15px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    padding: 10px;
+
+}
+
+.add-switch-panel .close-btn {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    border: none;
+    outline: none;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: orangered;
+    color: white;
+}
+
+.add-switch-panel .add-switch-btn {
+
+    position: absolute;
+    right: 25px;
+    width: 25%;
+    top: 50%;
+    transform: translateY(-40%);
+    height: 35px;
+    /* padding: 10px; */
+    border-radius: 18px;
+    border: none;
+    background-color: var(--mid);
+    color: var(--dark);
+    font-weight: 900;
+    font-size: 20px
+}
